@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>任达杰 · 简历与作品集 — The Life Aquatic</title>
+<meta name="description" content="任达杰，Web 前端开发工程师，滇池学院数字媒体技术专业，附个人插画作品集。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' fill='%23f3e8d3' stroke='%23123c5c' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='%23e2703a' stroke-width='4'/%3E%3Cpath d='M32 14v36M14 32h36' stroke='%23e2703a' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link href="https://miaoda.feishu.cn/fonts/css2?family=Marcellus&family=Jost:wght@300;400;500;600&family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 海洋色板 —— okLCH 派生，同一 hue 体系（海蓝主 / 珊瑚辅 / 奶油纸） */
+  --ink:  oklch(0.29 0.035 240);
+  --muted:oklch(0.45 0.030 240);
+  --cream:oklch(0.93 0.020 85);
+  --paper:oklch(0.965 0.014 90);
+  --sea:  oklch(0.55 0.100 230);
+  --sea-deep:oklch(0.36 0.060 235);
+  --coral:oklch(0.62 0.160 35);
+  --sand: oklch(0.85 0.030 80);
+  --line: oklch(0.87 0.028 85);
+  --shadow:oklch(0.32 0.045 240);
+
+  /* 排印 —— 西文在前、中文在后，汉字自动落中文字体 */
+  --font-display:"Marcellus","Noto Serif SC","Songti SC","SimSun",serif;
+  --font-body:"Jost","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-synthesis:none}
+body{font-family:var(--font-body);font-size:17px;line-height:1.8;color:var(--ink);
+  background:var(--paper);-webkit-font-smoothing:antialiased;line-break:strict;overflow-wrap:break-word}
+h1,h2,h3,h4{text-wrap:balance}
+p{text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:1060px;margin:0 auto;padding:0 24px}
+.diamond{width:9px;height:9px;background:var(--coral);transform:rotate(45deg);display:inline-block;vertical-align:middle}
+
+/* ===== 顶部导航：中央对称三栏 ===== */
+.nav{position:sticky;top:0;z-index:50;background:oklch(0.965 0.014 90 / .94);backdrop-filter:blur(6px);border-bottom:2px solid var(--ink)}
+.nav .container{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px}
+.nav-group{display:flex;gap:24px;font-size:13px;letter-spacing:.08em;color:var(--muted)}
+.nav-group a{position:relative;padding:4px 0;transition:color .2s}
+.nav-group a:hover{color:var(--coral)}
+.nav-group a.active{color:var(--ink);font-weight:600}
+.nav-group a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--coral)}
+.nav-left{justify-content:flex-end}
+.brand{font-family:var(--font-display);font-size:20px;letter-spacing:.14em;color:var(--ink);padding:0 30px;line-height:1.2}
+.brand small{display:block;font-family:var(--font-body);font-size:9px;letter-spacing:.42em;color:var(--coral);text-align:center;font-weight:500}
+.nav-toggle{display:none;justify-self:start;background:none;border:2px solid var(--ink);border-radius:2px;font-size:18px;color:var(--ink);cursor:pointer;padding:2px 8px}
+
+/* ===== Hero：对称 + 一次编排的加载序列 ===== */
+.hero{background:
+  radial-gradient(900px 420px at 50% -20%, oklch(0.55 0.10 230 / .30) 0%, transparent 62%),
+  var(--cream);
+  color:var(--ink);text-align:center;padding:88px 0 82px;position:relative;overflow:hidden;border-bottom:2px solid var(--ink)}
+.hero .kicker{font-family:var(--font-body);font-size:12px;letter-spacing:.5em;color:var(--coral);font-weight:600;margin-bottom:28px;text-transform:uppercase}
+.hero .avatar{width:150px;height:150px;margin:0 auto 30px;border-radius:50%;padding:7px;background:var(--paper);box-shadow:0 0 0 2px var(--ink);position:relative}
+.hero .avatar::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:1px solid var(--coral)}
+.hero .avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 30%}
+.hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2.4rem,1.4rem+3.4vw,3.6rem);line-height:1.15;letter-spacing:.04em}
+.hero .role{margin-top:16px;font-size:15px;letter-spacing:.22em;color:var(--sea-deep);text-transform:uppercase}
+.hero .contact{margin-top:26px;display:flex;flex-wrap:wrap;justify-content:center;gap:0;font-size:14px;color:var(--muted)}
+.hero .contact span{display:inline-flex;align-items:center;gap:9px;padding:0 20px;font-variant-numeric:tabular-nums}
+.hero .contact span+span{border-left:1px solid var(--sand)}
+.hero .contact svg{width:15px;height:15px;color:var(--coral)}
+.hero-cta{margin-top:36px;display:flex;justify-content:center;gap:16px}
+.btn{display:inline-block;padding:13px 32px;border-radius:0;font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.16em;
+  background:var(--sea-deep);color:var(--paper);transition:transform .2s,background .2s,box-shadow .2s;border:2px solid var(--sea-deep);box-shadow:4px 4px 0 var(--shadow)}
+.btn:hover{background:var(--sea);transform:translate(-1px,-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:4px 4px 0 var(--sand)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+
+/* Hero 加载序列（尊重 reduced-motion） */
+.hero .seq{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+.hero.loaded .seq{opacity:1;transform:none}
+.hero.loaded .kicker{transition-delay:.05s}
+.hero.loaded .avatar{transition-delay:.15s}
+.hero.loaded h1{transition-delay:.28s}
+.hero.loaded .role{transition-delay:.42s}
+.hero.loaded .contact{transition-delay:.55s}
+.hero.loaded .hero-cta{transition-delay:.68s}
+
+/* ===== 章节叙事 ===== */
+.chapter{padding:78px 0}
+.chapter+.chapter{border-top:1px solid var(--line)}
+.ch-head{text-align:center;margin-bottom:46px}
+.ch-num{font-family:var(--font-display);font-size:13px;letter-spacing:.34em;color:var(--coral)}
+.ch-kicker{display:block;margin-top:10px;font-family:var(--font-body);font-size:11px;letter-spacing:.46em;color:var(--sea);text-transform:uppercase}
+.ch-head h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.9rem,1.3rem+1.6vw,2.4rem);margin-top:6px;letter-spacing:.02em}
+.ch-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px}
+.ch-rule::before,.ch-rule::after{content:"";height:1px;width:76px;background:var(--sand)}
+.ch-intro{color:var(--muted);font-size:15px;letter-spacing:.02em;margin-top:14px}
+
+/* 微缩模型盒 —— 安德森双线描边 */
+.box{background:var(--paper);border:2px solid var(--ink);position:relative;padding:30px 32px;
+  box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), 8px 8px 0 oklch(0.32 0.045 240 / .14);
+  transition:transform .3s,box-shadow .3s}
+.box:hover{transform:translate(-2px,-2px);box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), 11px 11px 0 oklch(0.32 0.045 240 / .18)}
+.box .tab{position:absolute;top:-1px;left:-1px;background:var(--sea);color:var(--paper);font-size:10px;letter-spacing:.24em;padding:4px 14px;font-weight:600;text-transform:uppercase}
+
+/* ===== 教育 ===== */
+.edu-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+.edu-head h3{font-family:var(--font-display);font-size:clamp(1.2rem,.95rem+.6vw,1.4rem);font-weight:400;letter-spacing:.02em}
+.edu-head .date{font-size:13px;letter-spacing:.08em;color:var(--sea-deep);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.edu .courses{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+.edu .courses li{list-style:none;font-size:13px;letter-spacing:.03em;background:var(--cream);border:1px solid var(--sand);padding:5px 15px;color:var(--ink)}
+
+/* ===== 技能（安德森描边盒，无左色条 slop） ===== */
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.skill{border:2px solid var(--ink);background:var(--paper);padding:22px 24px 20px;position:relative;
+  box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), 6px 6px 0 oklch(0.62 0.16 35 / .18);
+  transition:transform .3s,box-shadow .3s}
+.skill:hover{transform:translate(-2px,-2px);box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), 9px 9px 0 oklch(0.62 0.16 35 / .22)}
+.skill .s-top{height:6px;background:var(--sea);margin:-22px -24px 16px}
+.skill:nth-child(2) .s-top{background:var(--coral)}
+.skill:nth-child(3) .s-top{background:var(--sea-deep)}
+.skill:nth-child(4) .s-top{background:var(--sand)}
+.skill .s-num{font-family:var(--font-display);color:var(--coral);font-size:12px;letter-spacing:.22em}
+.skill h4{font-family:var(--font-display);font-size:19px;font-weight:400;margin:8px 0 8px;letter-spacing:.01em}
+.skill p{font-size:14.5px;color:var(--muted);line-height:1.7}
+
+/* ===== 经历 · 时间轴 ===== */
+.timeline{max-width:780px;margin:0 auto;display:grid;grid-template-columns:150px 1fr;column-gap:28px}
+.tl{display:contents}
+.tl-time{font-size:13px;letter-spacing:.04em;color:var(--sea-deep);font-weight:600;text-align:right;padding-top:5px;font-variant-numeric:tabular-nums}
+.tl-body{position:relative;padding:0 0 38px 28px}
+.tl-body::before{content:"";position:absolute;left:0;top:9px;bottom:0;width:2px;background:var(--sand)}
+.tl:last-child .tl-body::before{display:none}
+.tl-dot{position:absolute;left:0;top:9px;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:var(--coral);border:3px solid var(--paper);box-shadow:0 0 0 2px var(--coral)}
+.tl-body h3{font-family:var(--font-display);font-size:20px;font-weight:400;letter-spacing:.02em}
+.tl-body .where{font-size:12.5px;color:var(--sea);font-weight:600;letter-spacing:.1em;margin-top:4px;text-transform:uppercase}
+.tl-body ul{margin-top:9px}
+.tl-body li{font-size:14.5px;color:oklch(0.38 0.03 240);margin-left:20px;padding-left:8px;line-height:1.7}
+
+/* ===== 荣誉 ===== */
+.honors{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.honor{text-align:center;border:2px solid var(--ink);background:var(--paper);padding:28px 20px 24px;
+  box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), 6px 6px 0 oklch(0.55 0.10 230 / .20);
+  transition:transform .3s,box-shadow .3s}
+.honor:hover{transform:translate(-2px,-2px);box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), 9px 9px 0 oklch(0.55 0.10 230 / .24)}
+.honor .badge{width:48px;height:48px;margin:0 auto 14px;border-radius:50%;background:var(--coral);display:grid;place-items:center;color:#fff;border:2px solid var(--ink);box-shadow:inset 0 0 0 2px var(--paper)}
+.honor .badge svg{width:20px;height:20px}
+.honor h4{font-family:var(--font-display);font-size:16.5px;font-weight:400}
+.honor p{font-size:12px;letter-spacing:.08em;color:var(--muted);margin-top:7px}
+
+/* ===== 作品集（对称画框） ===== */
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:12px}
+.work{border:2px solid var(--ink);background:var(--paper);box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), 8px 8px 0 oklch(0.32 0.045 240 / .14);
+  transition:transform .35s,box-shadow .35s;position:relative}
+.work:hover{transform:translate(-3px,-3px);box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--line), 11px 11px 0 oklch(0.32 0.045 240 / .18)}
+.work .topbar{height:9px;background:var(--sea)}
+.work:nth-child(2) .topbar{background:var(--coral)}
+.work:nth-child(3) .topbar{background:var(--sea-deep)}
+.work .frame{margin:16px 16px 0;border:1px solid var(--sand);padding:7px;background:var(--cream)}
+.work .frame img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.9) contrast(1.02)}
+.work .cap{padding:15px 20px 17px}
+.work .cap h3{font-family:var(--font-display);font-size:17.5px;font-weight:400;letter-spacing:.02em}
+.work .cap p{font-size:13px;color:var(--muted);margin-top:4px;letter-spacing:.02em;line-height:1.6}
+.work .tag{position:absolute;top:19px;right:17px;font-size:10px;letter-spacing:.22em;background:var(--paper);border:1px solid var(--ink);padding:2px 10px;text-transform:uppercase}
+
+/* ===== 关于 ===== */
+.about{max-width:700px;margin:0 auto;text-align:center}
+.about .quote{font-family:var(--font-display);font-size:clamp(1.1rem,.95rem+.5vw,1.35rem);line-height:1.9;color:oklch(0.36 0.03 240)}
+.about p+p{margin-top:20px}
+
+/* ===== Footer ===== */
+.footer{border-top:2px solid var(--ink);background:var(--cream);padding:30px 0;font-size:13px;color:var(--muted);letter-spacing:.04em}
+.footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer a{color:var(--sea-deep);font-weight:600}
+.to-top{position:fixed;right:26px;bottom:26px;width:48px;height:48px;background:var(--sea-deep);color:var(--paper);
+  display:grid;place-items:center;border:2px solid var(--ink);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .2s;box-shadow:4px 4px 0 var(--shadow)}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top:hover{transform:translateY(-3px)}
+.to-top svg{width:18px;height:18px}
+
+/* ============ 动效层（Level 2 强烈档） ============ */
+
+/* ① 加载入场：粒子拼名字 */
+#loader{position:fixed;inset:0;z-index:200;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s}
+#loader canvas{width:100vw;height:100vh;display:block}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+
+/* ② Hero 沉浸 3D 粒子河 */
+.hero-3d{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.85}
+.hero .container{position:relative;z-index:1}
+
+/* ③ 双层 cursor */
+.cursor{position:fixed;top:0;left:0;z-index:300;pointer-events:none;border-radius:50%;will-change:transform;opacity:0;transition:opacity .3s}
+.cursor-dot{width:6px;height:6px;background:var(--coral);margin:-3px 0 0 -3px}
+.cursor-ring{width:34px;height:34px;border:2px solid var(--coral);margin:-17px 0 0 -17px;transition:width .25s,height .25s,opacity .25s,background .25s}
+.cursor-ring.is-hover{width:60px;height:60px;margin:-30px 0 0 -30px;opacity:.55;background:var(--coral);border-color:var(--coral)}
+@media (hover:none){.cursor{display:none}}
+body.has-cursor{cursor:none}
+body.has-cursor a,body.has-cursor button,body.has-cursor .work{cursor:none}
+
+/* ⑩ 全局环境：后处理拉满（胶片颗粒 + 晕影 + 扫描） */
+.fx{position:fixed;inset:0;z-index:120;pointer-events:none;overflow:hidden}
+.fx .grain{position:absolute;inset:-50%;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='0.55'/></svg>");opacity:.055;animation:grain 9s steps(10) infinite}
+.fx .vig{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 58%,oklch(0.29 0.035 240 / .14) 100%)}
+.fx .scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 3px,oklch(0.29 0.035 240 / .015) 3px 4px)}
+@keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-4%,-3%)}20%{transform:translate(-2%,2%)}30%{transform:translate(3%,-2%)}40%{transform:translate(-3%,3%)}50%{transform:translate(2%,2%)}60%{transform:translate(4%,-2%)}70%{transform:translate(-2%,3%)}80%{transform:translate(3%,3%)}90%{transform:translate(-3%,-2%)}}
+
+/* ⑧ 作品 3D 倾斜 + lightbox */
+.work{transform-style:preserve-3d;will-change:transform;cursor:pointer}
+.work .frame{transform:translateZ(26px)}
+.work .cap{transform:translateZ(18px)}
+.lightbox{position:fixed;inset:0;z-index:250;background:oklch(0.20 0.03 240 / .9);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;backdrop-filter:blur(5px)}
+.lightbox.open{display:flex;animation:lbfade .3s ease}
+.lightbox img{max-width:86vw;max-height:74vh;border:3px solid var(--paper);box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.lightbox .lb-cap{color:var(--paper);font-family:var(--font-display);font-size:17px;letter-spacing:.04em}
+.lightbox .lb-sub{color:oklch(0.9 0.02 90 / .8);font-size:13px}
+@keyframes lbfade{from{opacity:0}to{opacity:1}}
+
+/* ⑤ 标题字母逐个 */
+.ch-letter{display:inline-block;opacity:0;transform:translateY(22px);will-change:transform,opacity}
+
+/* ⑥ 数字动效 */
+.num{display:inline-block;will-change:transform}
+
+/* ⑨ 联系页 · 信封 + 邮戳 */
+.env{text-align:center;margin-bottom:28px;position:relative}
+.env .envelope{display:inline-block;position:relative;width:120px;height:84px}
+.env .env-body{position:absolute;inset:0;border:2px solid var(--ink);background:var(--paper);border-radius:3px;box-shadow:4px 4px 0 var(--shadow)}
+.env .env-flap{position:absolute;top:0;left:0;right:0;height:0;border-style:solid;border-width:0 60px 42px 60px;border-color:transparent transparent var(--cream) transparent;filter:drop-shadow(0 1px 0 var(--ink));transform-origin:top;transition:transform .5s ease}
+.env.open .env-flap{transform:rotateX(180deg)}
+.env .env-lines{position:absolute;top:34px;left:22px;right:22px;height:16px;border-top:2px solid var(--sand);border-bottom:2px solid var(--sand)}
+.env .stamp{position:absolute;top:-34px;right:-14px;width:92px;height:92px;border-radius:50%;border:2px solid var(--coral);color:var(--coral);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.1;padding:10px 0;background:oklch(0.965 0.014 90 / .92);transform:rotate(-8deg)}
+.env .stamp b{font-family:var(--font-display);font-size:16px;letter-spacing:.1em}
+.env .stamp span{font-size:9px;letter-spacing:.2em}
+.env .stamp::before{content:"";position:absolute;inset:4px;border:1px dashed var(--coral);border-radius:50%}
+
+html.loading{overflow:hidden}
+
+/* ===== 响应式 ===== */
+@media (max-width:860px){
+  .skills{grid-template-columns:1fr}
+  .honors{grid-template-columns:1fr}
+  .works{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .chapter{padding:58px 0}
+  .nav .container{grid-template-columns:auto 1fr;height:56px}
+  .nav-group{position:absolute;top:56px;left:0;right:0;background:var(--paper);border-bottom:2px solid var(--ink);
+    flex-direction:column;padding:14px 24px;gap:14px;display:none}
+  .nav-group.open{display:flex}
+  .nav-left{justify-content:flex-start}
+  .brand{padding:0}
+  .nav-toggle{display:inline-block}
+  .hero{padding:62px 0}
+  .avatar{width:120px;height:120px}
+  .hero .role{letter-spacing:.12em}
+  .hero-cta{flex-direction:column;align-items:center}
+  .timeline{grid-template-columns:1fr}
+  .tl-time{text-align:left;margin-bottom:4px}
+  .works{grid-template-columns:1fr}
+  .contact span{padding:4px 0}
+  .contact span+span{border-left:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+  .hero .seq{opacity:1;transform:none}
+  #loader{display:none}
+  .hero-3d{display:none}
+  .ch-letter{opacity:1;transform:none}
+}
+</style>
+<script>
+// 库加载器：GSAP / ScrollTrigger / Three.js —— 依次尝试 jsDelivr → cdnjs，全部失败则降级（动效禁用，页面静态可用）
+(function(){
+  document.documentElement.classList.add('loading');
+  function tryList(urls, done){
+    var i=0;
+    (function next(){
+      if(i>=urls.length){ done(false); return; }
+      var s=document.createElement('script');
+      s.src=urls[i]; s.onload=function(){ done(true); }; s.onerror=function(){ i++; next(); };
+      document.head.appendChild(s);
+    })();
+  }
+  var gsapUrls=["https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js","https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"];
+  var stUrls=["https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js","https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"];
+  var threeUrls=["https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js","https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"];
+  tryList(gsapUrls, function(okG){
+    window.__gsapReady=okG;
+    if(okG){ tryList(stUrls, function(okST){ window.__stReady=okST; tryList(threeUrls,function(ok3){ window.__threeReady=ok3; window.__animReady=true; }); }); }
+    else { tryList(threeUrls,function(ok3){ window.__threeReady=ok3; window.__stReady=false; window.__animReady=true; }); }
+  });
+})();
+</script>
+</head>
+<body>
+<!-- 加载入场：粒子拼名字 -->
+<div id="loader"><canvas id="loaderCanvas"></canvas></div>
+
+<!-- 全局后处理 overlay -->
+<div class="fx"><div class="grain"></div><div class="scan"></div><div class="vig"></div></div>
+
+<!-- 双层 cursor -->
+<div class="cursor cursor-ring" id="cursorRing"></div>
+<div class="cursor cursor-dot" id="cursorDot"></div>
+
+<!-- ===== 视图：导航（中央对称） ===== -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-group nav-left" id="navLeft">
+      <a href="#education">教育</a>
+      <a href="#skills">技能</a>
+      <a href="#experience">经历</a>
+    </div>
+    <a class="brand" href="#top">任达杰<small>PORTFOLIO</small></a>
+    <div class="nav-group" id="navRight">
+      <a href="#honors">荣誉</a>
+      <a href="#portfolio">作品</a>
+      <a href="#about">关于</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+  </div>
+</nav>
+
+<!-- ===== 视图：Hero ===== -->
+<header class="hero" id="top">
+  <canvas class="hero-3d" id="hero3d"></canvas>
+  <div class="container">
+    <div class="kicker seq">A PORTFOLIO &amp; RESUME</div>
+    <div class="avatar seq"><img src="assets/portrait.jpg" alt="任达杰头像"></div>
+    <h1 class="seq">任达杰</h1>
+    <p class="role seq">Web 前端开发工程师</p>
+    <div class="contact seq">
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>liming@example.com</span>
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 7 11.5 7.4 11.9a1 1 0 0 0 1.2 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>昆明</span>
+    </div>
+    <div class="hero-cta seq">
+      <a class="btn" href="#portfolio">查看作品</a>
+      <a class="btn ghost" href="#about">了解我</a>
+    </div>
+  </div>
+</header>
+<main>
+<!-- ===== 章节：教育 ===== -->
+<section class="chapter" id="education">
+  <div class="container">
+    <div class="ch-head">
+      <span class="ch-num">Chapter 01</span>
+      <span class="ch-kicker">Education · 教育背景</span>
+      <h2>教育</h2>
+      <div class="ch-rule"><span class="diamond"></span></div>
+    </div>
+    <div class="box" style="max-width:780px;margin:0 auto">
+      <span class="tab">Academy</span>
+      <div class="edu-head">
+        <h3>滇池学院 · 数字媒体技术（本科）</h3>
+        <span class="date">2025.09 — 2027.06</span>
+      </div>
+      <ul class="courses">
+        <li>数据结构</li><li>操作系统</li><li>计算机网络</li>
+        <li>数据库原理</li><li>Web 前端开发</li><li>软件工程</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 章节：技能 ===== -->
+<section class="chapter" id="skills">
+  <div class="container">
+    <div class="ch-head">
+      <span class="ch-num">Chapter 02</span>
+      <span class="ch-kicker">Skills · 专业技能</span>
+      <h2>技能</h2>
+      <div class="ch-rule"><span class="diamond"></span></div>
+    </div>
+    <div class="skills" style="max-width:900px;margin:0 auto">
+      <div class="skill"><div class="s-top"></div><span class="s-num">01</span>
+        <h4>前端基础</h4>
+        <p>HTML5 / CSS3 / JavaScript（ES6+），扎实的页面布局与交互实现能力。</p>
+      </div>
+      <div class="skill"><div class="s-top"></div><span class="s-num">02</span>
+        <h4>框架与库</h4>
+        <p>React、Vue 3、TypeScript、ECharts、Axios。</p>
+      </div>
+      <div class="skill"><div class="s-top"></div><span class="s-num">03</span>
+        <h4>工程化</h4>
+        <p>Git、Webpack / Vite、npm / pnpm，了解 Node.js 基础。</p>
+      </div>
+      <div class="skill"><div class="s-top"></div><span class="s-num">04</span>
+        <h4>其他能力</h4>
+        <p>RESTful API 对接、响应式与移动端适配、UI 组件库（Element Plus / Ant Design）。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 章节：经历 ===== -->
+<section class="chapter" id="experience">
+  <div class="container">
+    <div class="ch-head">
+      <span class="ch-num">Chapter 03</span>
+      <span class="ch-kicker">Experience · 项目与实习</span>
+      <h2>经历</h2>
+      <div class="ch-rule"><span class="diamond"></span></div>
+    </div>
+    <div class="timeline">
+      <div class="tl">
+        <div class="tl-time">2023.03 — 2023.08</div>
+        <div class="tl-body"><span class="tl-dot"></span>
+          <h3>个人作品展示网站</h3>
+          <div class="where">独立开发 · Front-end</div>
+          <ul>
+            <li>基于 Vue 3 + Vite + TypeScript 完成需求分析、界面设计与前端开发。</li>
+            <li>实现作品分类筛选、详情弹窗与响应式布局，覆盖桌面端与移动端。</li>
+            <li>接入 GitHub Pages 完成部署，通过 Lint 与构建流程保证代码质量。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl">
+        <div class="tl-time">2022.09 — 2023.01</div>
+        <div class="tl-body"><span class="tl-dot"></span>
+          <h3>校园二手交易平台</h3>
+          <div class="where">前端开发 · Team</div>
+          <ul>
+            <li>使用 React + Redux 实现商品列表、搜索与下单等核心流程。</li>
+            <li>与后端协作完成接口联调，封装通用请求模块，提升开发效率约 <span class="num" data-count="30">30</span>%。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl">
+        <div class="tl-time">2023.07 — 2023.10</div>
+        <div class="tl-body"><span class="tl-dot"></span>
+          <h3>前端开发实习生</h3>
+          <div class="where">贵阳阳光科技有限公司</div>
+          <ul>
+            <li>参与电商后台管理系统开发，基于 Vue 3 + Element Plus 完成 <span class="num" data-count="10">10</span>+ 个业务页面。</li>
+            <li>编写可复用组件与公共工具函数，配合测试团队完成缺陷修复与性能优化。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 章节：荣誉 ===== -->
+<section class="chapter" id="honors">
+  <div class="container">
+    <div class="ch-head">
+      <span class="ch-num">Chapter 04</span>
+      <span class="ch-kicker">Honors · 荣誉与证书</span>
+      <h2>荣誉</h2>
+      <div class="ch-rule"><span class="diamond"></span></div>
+    </div>
+    <div class="honors" style="max-width:900px;margin:0 auto">
+      <div class="honor">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 9.5 7.5 4 8l4 4-1 6 5-3 5 3-1-6 4-4-5.5-.5z"/></svg></div>
+        <h4>全国大学生计算机设计大赛</h4><p>省级二等奖 · 2022</p>
+      </div>
+      <div class="honor">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 9.5 7.5 4 8l4 4-1 6 5-3 5 3-1-6 4-4-5.5-.5z"/></svg></div>
+        <h4>蓝桥杯软件赛</h4><p>省级三等奖 · 2023</p>
+      </div>
+      <div class="honor">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 9.5 7.5 4 8l4 4-1 6 5-3 5 3-1-6 4-4-5.5-.5z"/></svg></div>
+        <h4>大学英语四级</h4><p>CET-4 · 已通过</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 章节：作品集 ===== -->
+<section class="chapter" id="portfolio">
+  <div class="container">
+    <div class="ch-head">
+      <span class="ch-num">Chapter 05</span>
+      <span class="ch-kicker">Portfolio · 插画作品集</span>
+      <h2>作品</h2>
+      <p class="ch-intro">个人插画作品，以海洋与角色为主题，横跨明快与静谧两种氛围。</p>
+      <div class="ch-rule"><span class="diamond"></span></div>
+    </div>
+    <div class="works">
+      <figure class="work">
+        <span class="tag">插画</span>
+        <div class="topbar"></div>
+        <div class="frame"><img src="assets/works_1.jpg" alt="海底朋友 · 角色群像插画" loading="lazy"></div>
+        <figcaption class="cap"><h3>海底朋友 · 角色群像</h3><p>明快色调的角色大合影，营造欢乐氛围。</p></figcaption>
+      </figure>
+      <figure class="work">
+        <span class="tag">插画</span>
+        <div class="topbar"></div>
+        <div class="frame"><img src="assets/works_2.jpg" alt="海底伙伴 · 系列插画" loading="lazy"></div>
+        <figcaption class="cap"><h3>海底伙伴 · 系列插画</h3><p>渐变蓝绿色海底场景，角色们的日常瞬间。</p></figcaption>
+      </figure>
+      <figure class="work">
+        <span class="tag">角色设计</span>
+        <div class="topbar"></div>
+        <div class="frame"><img src="assets/portrait.jpg" alt="深海人鱼 · 原创角色" loading="lazy"></div>
+        <figcaption class="cap"><h3>深海人鱼 · 原创角色</h3><p>暗色水下场景，细腻鳞片与光影氛围。</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 章节：关于 ===== -->
+<section class="chapter" id="about">
+  <div class="container">
+    <div class="ch-head">
+      <span class="ch-num">Epilogue</span>
+      <span class="ch-kicker">About · 自我评价</span>
+      <h2>关于</h2>
+      <div class="ch-rule"><span class="diamond"></span></div>
+    </div>
+    <div class="about">
+      <p class="quote">「热爱前端开发，具备独立完成项目的能力与良好的团队协作意识。」</p>
+      <p class="quote">「学习能力强，能快速掌握新技术并应用于实际业务。」</p>
+      <p class="quote">「注重代码规范与用户体验，责任心强，善于沟通。」</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="env">
+    <div class="envelope">
+      <div class="env-body"></div>
+      <div class="env-flap"></div>
+      <div class="env-lines"></div>
+      <div class="stamp"><b>任达杰</b><span>2026 · 昆明</span></div>
+    </div>
+  </div>
+  <div class="container">
+    <span>© 2026 任达杰 · 滇池学院</span>
+    <span>联系方式：<a href="mailto:liming@example.com">liming@example.com</a></span>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5.8 4.6 13l1.4 1.4L12 8.6l6 5.8L19.4 13z"/></svg>
+</button>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="作品大图">
+  <div class="lb-cap"></div>
+  <div class="lb-sub">点击任意处或按 Esc 关闭</div>
+</div>
+
+<script>
+(function(){
+  // 基础交互：导航 / 回到顶部 / 滚动高亮（hero 加载序列由 loader 完成后触发）
+  var hero=document.querySelector('.hero');
+  window.addEventListener('loader-done',function(){ if(hero) hero.classList.add('loaded'); });
+
+  var navToggle=document.getElementById('navToggle');
+  var groups=[document.getElementById('navLeft'),document.getElementById('navRight')];
+  var links=[];groups.forEach(function(g){links=links.concat(Array.prototype.slice.call(g.querySelectorAll('a')));});
+  navToggle.addEventListener('click',function(){groups.forEach(function(g){g.classList.toggle('open');});});
+  links.forEach(function(a){a.addEventListener('click',function(){groups.forEach(function(g){g.classList.remove('open');});});});
+
+  var toTop=document.getElementById('toTop');
+  window.addEventListener('scroll',function(){toTop.classList.toggle('show',window.scrollY>600);},{passive:true});
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  var sections=['education','skills','experience','honors','portfolio','about'];
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id=e.target.id;
+        links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+id);});
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(function(id){var el=document.getElementById(id);if(el){observer.observe(el);}});
+})();
+</script>
+
+<script>
+(function(){
+  var reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var G=window.__gsapReady?window.gsap:null;
+  var ST=G&&window.__stReady?window.ScrollTrigger:null;
+  var TH=window.__threeReady?window.THREE:null;
+
+  /* ---------- ① 加载入场：粒子拼名字 ---------- */
+  var loader=document.getElementById('loader');
+  var lc=document.getElementById('loaderCanvas');
+  function doneLoader(){ document.documentElement.classList.remove('loading'); if(loader)loader.classList.add('done'); window.dispatchEvent(new Event('loader-done')); }
+  if(!reduced && lc && lc.getContext){
+    var ctx=lc.getContext('2d');
+    var W=lc.width=window.innerWidth, H=lc.height=window.innerHeight;
+    var off=document.createElement('canvas'); off.width=600; off.height=220;
+    var octx=off.getContext('2d');
+    octx.fillStyle='#000'; octx.font='700 150px "Noto Serif SC","Songti SC",serif'; octx.textAlign='center'; octx.textBaseline='middle';
+    octx.fillText('任达杰',300,120);
+    var d=octx.getImageData(0,0,600,220).data, targets=[];
+    for(var y=0;y<220;y+=3){ for(var x=0;x<600;x+=3){ if(d[(y*600+x)*4+3]>128){ targets.push({tx:(x/600)*W,ty:70+(y/220)*(H-140),r:Math.random()*1.4+0.6}); } } }
+    if(targets.length<40){ doneLoader(); }
+    else{
+      var parts=targets.map(function(t){return {x:Math.random()*W,y:Math.random()*H,tx:t.tx,ty:t.ty,r:t.r,a:Math.random()*6.28};});
+      var coral='224,112,58', sea='42,111,151';
+      (function frame(){
+        ctx.clearRect(0,0,W,H); var all=true;
+        for(var i=0;i<parts.length;i++){
+          var p=parts[i]; p.x+=(p.tx-p.x)*0.05; p.y+=(p.ty-p.y)*0.05; p.a+=0.02;
+          if(Math.abs(p.tx-p.x)>0.8||Math.abs(p.ty-p.y)>0.8) all=false;
+          var c=i%3===0?coral:sea;
+          ctx.fillStyle='rgba('+c+',0.9)';
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fill();
+        }
+        if(all){ setTimeout(doneLoader,550); } else { requestAnimationFrame(frame); }
+      })();
+    }
+  } else { doneLoader(); }
+
+  /* ---------- ③ 双层 cursor + 磁吸 ---------- */
+  if(!reduced && matchMedia('(hover:hover)').matches){
+    document.body.classList.add('has-cursor');
+    var dot=document.getElementById('cursorDot'), ring=document.getElementById('cursorRing');
+    var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my, firstMove=true;
+    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;if(firstMove){firstMove=false;dot.style.opacity=1;ring.style.opacity=1;}dot.style.transform='translate('+mx+'px,'+my+'px)';});
+    (function loop(){rx+=(mx-rx)*0.14;ry+=(my-ry)*0.14;if(ring)ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(loop);})();
+    var sel='a,button,.work,.skill,.honor,.box';
+    document.addEventListener('mouseover',function(e){if(e.target.closest&&e.target.closest(sel))ring.classList.add('is-hover');});
+    document.addEventListener('mouseout',function(e){if(e.target.closest&&e.target.closest(sel))ring.classList.remove('is-hover');});
+    document.querySelectorAll('.btn').forEach(function(b){
+      b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);b.style.transform='translate('+(dx*0.22)+'px,'+(dy*0.22)+'px)';});
+      b.addEventListener('mouseleave',function(){b.style.transform='';});
+    });
+  }
+
+  /* ---------- ⑧ 作品 3D 倾斜 + lightbox ---------- */
+  var works=document.querySelectorAll('.work');
+  works.forEach(function(w){
+    if(!reduced){
+      w.addEventListener('mousemove',function(e){var r=w.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;w.style.transform='perspective(900px) rotateY('+(px*13)+'deg) rotateX('+(-py*13)+'deg)';});
+      w.addEventListener('mouseleave',function(){w.style.transform='';});
+    }
+  });
+  var lb=document.getElementById('lightbox'), lbImg=lb.querySelector('img'), lbCap=lb.querySelector('.lb-cap');
+  works.forEach(function(w){
+    w.addEventListener('click',function(){
+      var img=w.querySelector('img'), cap=w.querySelector('.cap h3');
+      lbImg.src=img.src; lbImg.alt=img.alt; lbCap.textContent=cap?cap.textContent:''; lb.classList.add('open');
+    });
+  });
+  if(lb){ lb.addEventListener('click',function(){lb.classList.remove('open');}); }
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open');});
+
+  /* ---------- GSAP 动效 ---------- */
+  if(G){
+    if(ST) G.registerPlugin(ST);
+    /* ④ 滚动 stagger + 缩放；⑦ 章节扉页砸出 */
+    document.querySelectorAll('.chapter').forEach(function(ch){
+      var head=ch.querySelector('.ch-head');
+      if(head){
+        G.fromTo(head,{scale:1.16,autoAlpha:0},{scale:1,autoAlpha:1,duration:0.7,ease:'power3.out',
+          scrollTrigger: ST?{trigger:ch,start:'top 78%',once:true}:false});
+      }
+      G.utils.toArray(ch.querySelectorAll('.box,.skill,.honor,.work,.tl')).forEach(function(item){
+        G.fromTo(item,{y:44,scale:.96,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:0.7,ease:'power3.out',
+          scrollTrigger: ST?{trigger:item,start:'top 88%',once:true}:false});
+      });
+    });
+    /* ⑥ 数字动效：odometer + 缩放弹出 */
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var end=parseInt(el.getAttribute('data-count'),10), obj={v:0};
+      var tw=G.fromTo(obj,{v:0},{v:end,duration:1.5,ease:'power1.inOut',
+        scrollTrigger: ST?{trigger:el,start:'top 86%',once:true}:false,
+        onUpdate:function(){el.textContent=Math.round(obj.v);},
+        onStart:function(){G.fromTo(el,{scale:.4},{scale:1.25,duration:.3,ease:'back.out(2)',yoyo:true,repeat:1});}});
+      if(!ST) tw.play();
+    });
+    /* ⑤ 大标题入场：letter-spacing + 字母逐个 */
+    document.querySelectorAll('.ch-head h2, .hero h1').forEach(function(h){
+      if(h.dataset.done) return; h.dataset.done=1;
+      var text=h.textContent; if(!text||text.length<2) return;
+      var isHero=!!h.closest('.hero');
+      if(isHero) h.classList.remove('seq');
+      h.setAttribute('aria-label',text); h.textContent='';
+      Array.from(text).forEach(function(ch){
+        var s=document.createElement('span'); s.className='ch-letter'; s.textContent=ch;
+        if(ch===' ') s.style.marginRight='0.28em';
+        h.appendChild(s);
+      });
+      var letters=h.querySelectorAll('.ch-letter');
+      G.fromTo(letters,{letterSpacing:'0.32em',y:26,autoAlpha:0},{letterSpacing:'0.02em',y:0,autoAlpha:1,duration:0.7,ease:'power3.out',stagger:0.055,
+        scrollTrigger: ST?{trigger:h,start: isHero?'top 92%':'top 85%',once:true}:false});
+    });
+    /* ⑨ 联系页：信封 + 邮戳 */
+    var env=document.querySelector('.env');
+    if(env){
+      var envEl=env.querySelector('.envelope'), stamp=env.querySelector('.stamp');
+      var t1=G.fromTo(envEl,{y:50,autoAlpha:0},{y:0,autoAlpha:1,duration:0.7,ease:'power3.out',
+        scrollTrigger: ST?{trigger:env,start:'top 88%',once:true}:false,
+        onStart:function(){env.classList.add('open');}});
+      var t2=G.fromTo(stamp,{scale:1.9,rotation:-42,autoAlpha:0},{scale:1,rotation:-8,autoAlpha:1,duration:0.6,ease:'back.out(2.2)',
+        scrollTrigger: ST?{trigger:env,start:'top 88%',once:true}:false});
+      if(!ST){ t1.play(); t2.play(); }
+    }
+  }
+
+  /* ---------- ② Hero 沉浸 3D 粒子河 ---------- */
+  if(TH && !reduced){
+    var canvas=document.getElementById('hero3d');
+    if(canvas){
+      try{
+        var renderer=new TH.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
+        renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+        renderer.setSize(canvas.clientWidth,canvas.clientHeight);
+        var scene=new TH.Scene(), camera=new TH.PerspectiveCamera(60,canvas.clientWidth/canvas.clientHeight,0.1,100);
+        camera.position.set(0,0,6);
+        var count=1500, pos=new Float32Array(count*3), cols=new Float32Array(count*3);
+        var cSea=new TH.Color(0x2a6f97), cCoral=new TH.Color(0xe2703a), cCream=new TH.Color(0xf3e8d3), tmp=new TH.Color();
+        for(var i=0;i<count;i++){
+          var x=(Math.random()*2-1)*8;
+          pos[i*3]=x; pos[i*3+1]=Math.sin(x*0.7)*0.5+(Math.random()*2-1)*1.7; pos[i*3+2]=(Math.random()*2-1)*2.6+0.5;
+          tmp.copy(cSea).lerp(cCoral,Math.random()*0.6); if(Math.random()>0.92) tmp.copy(cCream);
+          cols[i*3]=tmp.r; cols[i*3+1]=tmp.g; cols[i*3+2]=tmp.b;
+        }
+        var geo=new TH.BufferGeometry();
+        geo.setAttribute('position',new TH.BufferAttribute(pos,3));
+        geo.setAttribute('color',new TH.BufferAttribute(cols,3));
+        var mat=new TH.PointsMaterial({size:0.06,vertexColors:true,transparent:true,opacity:0.85,sizeAttenuation:true,blending:TH.AdditiveBlending,depthWrite:false});
+        var points=new TH.Points(geo,mat); scene.add(points);
+        var t=0;
+        function animate(){
+          t+=0.0035;
+          var p=geo.attributes.position.array;
+          for(var i=0;i<count;i++){
+            p[i*3]+=0.007;
+            if(p[i*3]>8){ p[i*3]=-8; p[i*3+1]=Math.sin(-8*0.7)*0.5+(Math.random()*2-1)*1.7; }
+          }
+          geo.attributes.position.needsUpdate=true;
+          points.rotation.y=Math.sin(t)*0.06; points.rotation.x=Math.sin(t*0.8)*0.03;
+          camera.position.y=Math.sin(t*1.3)*0.16; camera.lookAt(0,0,0);
+          renderer.render(scene,camera); requestAnimationFrame(animate);
+        }
+        animate();
+      }catch(e){ if(canvas) canvas.style.display='none'; }
+    }
+  }
+})();
+</script>
+</body>
+</html>
